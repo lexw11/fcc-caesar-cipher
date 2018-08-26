@@ -1,5 +1,3 @@
-console.log("connected");
-
 function rot13(str) {
   // Split string into array if single characters
   // Check if character is letter
@@ -9,7 +7,11 @@ function rot13(str) {
   return str.split("").map( char => checkChar(char) ).join("");
 
   function checkChar(char) {
-  	return "A";
+  	if( /[A-Z]/.test(char) ) {
+  		return "A";
+  	} else {
+  		return char;
+  	}
   }
 }
 
