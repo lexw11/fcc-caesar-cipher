@@ -1,18 +1,34 @@
 function rot13(str) {
-  // Split string into array if single characters
-  // Check if character is letter
-  // Shift letter back 13 places
-  // Account for letters that need to wrap to end of alphabet
-  // Join new string
-  return str.split("").map( char => checkChar(char) ).join("");
+	return str
+		// Split string into array of individual characters
+		.split("")
+		// Decode all letter characters
+		.map( char => checkChar(char) )
+		// Join decoded array back into string
+		.join("");
 
-  function checkChar(char) {
-  	if( /[A-Z]/.test(char) ) {
-  		return "A";
-  	} else {
-  		return char;
-  	}
-  }
+	// Decodes individual character
+	function checkChar(char) {
+		// Check if character is letter
+		if ( /[A-Z]/.test(char) ) {
+			// Get encoded letter UTF-16 code
+			let ind = char.charCodeAt(0);
+			let newInd;
+			
+			// Get decoded letter UTF-16 code
+			if ( ind < 78 ) {
+				// Handle letters that need to wrap to end of alphabet
+				newInd = ind + 13;
+			} else {
+				newInd = ind - 13;
+			}
+
+			return String.fromCharCode( newInd );
+
+		} else {
+			return char;
+		}
+	}
 }
 
 // Change the inputs below to test
