@@ -6,7 +6,13 @@ function rot13(str) {
   // Shift letter back 13 places
   // Account for letters that need to wrap to end of alphabet
   // Join new string
+  return str.split("").map( char => checkChar(char) ).join("");
+
+  function checkChar(char) {
+  	return "A";
+  }
 }
 
 // Change the inputs below to test
-rot13("SERR PBQR PNZC");
+var result = rot13("SERR PBQR PNZC");
+console.log(result);
