@@ -3,12 +3,12 @@ function rot13(str) {
 		// Split string into array of individual characters
 		.split("")
 		// Decode all letter characters
-		.map( char => checkChar(char) )
+		.map( char => decodeChar(char) )
 		// Join decoded array back into string
 		.join("");
 
 	// Decodes individual character
-	function checkChar(char) {
+	function decodeChar(char) {
 		// Check if character is letter
 		if ( /[A-Z]/.test(char) ) {
 			// Get encoded letter UTF-16 code
@@ -23,6 +23,7 @@ function rot13(str) {
 				newInd = ind - 13;
 			}
 
+			// Return decoded letter
 			return String.fromCharCode( newInd );
 
 		} else {
